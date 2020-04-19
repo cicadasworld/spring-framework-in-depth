@@ -2,8 +2,8 @@ package com.jin.aspect;
 
 import java.util.Arrays;
 import java.util.Collection;
-import org.aspectj.lang.JoinPoint;
-import org.aspectj.lang.annotation.AfterReturning;
+import org.aspectj.lang.ProceedingJoinPoint;
+import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Pointcut;
 import org.slf4j.Logger;
@@ -20,10 +20,14 @@ public class LoggingAspect {
     public void executeLogging() {
     }
 
-    @AfterReturning(value = "executeLogging()", returning = "returnValue")
-    public void logMethodCall(JoinPoint joinPoint, Object returnValue) {
+    @Around(value = "executeLogging()")
+    public Object logMethodCall(ProceedingJoinPoint joinPoint) throws Throwable {
+        long startTime = System.currentTimeMillis();
+        Object returnValue = joinPoint.proceed();
+        long totalTime = System.currentTimeMillis() - startTime;
         StringBuilder message = new StringBuilder("Method: ");
         message.append(joinPoint.getSignature().getName());
+        message.append(" totoalTime: ").append(totalTime).append("ms");
         Object[] args = joinPoint.getArgs();
         if (null != args && args.length > 0) {
             message.append(" args=[ | ");
@@ -39,5 +43,6 @@ public class LoggingAspect {
             message.append(", returning: ").append(returnValue.toString());
         }
         LOGGER.info(message.toString());
+        return returnValue;
     }
 }
