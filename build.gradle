@@ -9,9 +9,15 @@ repositories {
 group 'com.jin'
 version '1.0-SNAPSHOT'
 
-ext.springVersion = '5.2.5.RELEASE'
+ext {
+    springVersion = '5.2.5.RELEASE'
+    aspectJVersion = '1.9.5'
+    logbackVersion = '1.2.3'
+}
 
 dependencies {
     implementation "org.springframework:spring-core:$springVersion"
     implementation "org.springframework:spring-context:$springVersion"
+    implementation "org.aspectj:aspectjweaver:$aspectJVersion"
+    implementation "ch.qos.logback:logback-classic:$logbackVersion"
 }
