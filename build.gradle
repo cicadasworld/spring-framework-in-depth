@@ -1,0 +1,17 @@
+plugins {
+    id 'java'
+}
+
+repositories {
+    mavenCentral()
+}
+
+group 'com.jin'
+version '1.0-SNAPSHOT'
+
+ext.springVersion = '5.2.5.RELEASE'
+
+dependencies {
+    implementation "org.springframework:spring-core:$springVersion"
+    implementation "org.springframework:spring-context:$springVersion"
+}
