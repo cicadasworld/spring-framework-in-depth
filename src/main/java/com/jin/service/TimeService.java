@@ -5,7 +5,7 @@ import java.time.format.DateTimeFormatter;
 
 public class TimeService {
 
-    private static final DateTimeFormatter FORMATTER_24 = DateTimeFormatter.ofPattern("HH:mm:ss");
+	private static final DateTimeFormatter FORMATTER_24 = DateTimeFormatter.ofPattern("HH:mm:ss");
     private static final DateTimeFormatter FORMATTER_12 = DateTimeFormatter.ofPattern("hh:mm:ss a");
 
     private final boolean is24;
